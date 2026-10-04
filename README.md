@@ -1,4 +1,4 @@
-# 📊 Phân Khúc Khách Hàng Từ Dữ Liệu Giao Dịch Quy Mô Lớn Bằng Apache Spark
+# 📊 PHÂN KHÚC KHÁCH HÀNG TỪ DỮ LIỆU GIAO DỊCH QUY MÔ LỚN BẰNG APACHE 
 
 Dự án nghiên cứu và xây dựng ứng dụng phân khúc người dùng dựa trên dữ liệu mua hàng Amazon (Amazon Purchases). Ứng dụng kết hợp sức mạnh xử lý dữ liệu lớn của **Apache Spark (PySpark)**, thuật toán phân cụm **K-Means**, và giao diện tương tác trực quan bằng **Streamlit**.
 
