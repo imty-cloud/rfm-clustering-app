@@ -1,0 +1,341 @@
+
+
+######## 2. DAC TRUNG / SKEW / PCA ########
+
+=== features_describe (7x13)
+                     count       mean        std   min        1%       5%       25%        50%         75%         95%         99%          max  skew_raw
+Recency             5026.0    59.2137   143.2546  0.00    0.0000    1.000     5.000    21.0000     47.0000    240.0000    765.5000    1758.0000    5.9627
+Frequency           5026.0   158.5219   158.0010  1.00    3.0000   10.000    45.000   110.0000    220.0000    482.0000    755.5000    1215.0000    1.8812
+Monetary            5026.0  8280.6553  9248.3084  4.99  103.4625  420.785  2116.155  5393.5600  11091.1625  26397.5525  43293.6225  108951.2500    2.6320
+Unique_Products     5026.0   295.2417   326.7932  0.00    4.0000   16.000    79.000   196.5000    398.7500    921.0000   1547.2500    4141.0000    2.8717
+Category_Diversity  5026.0   126.9103   100.5162  0.00    3.0000   11.000    48.000   104.0000    181.0000    321.0000    440.0000     668.0000    1.2078
+Active_Months       5026.0    38.6261    17.4350  1.00    3.0000    7.000    25.000    42.0000     55.0000     60.0000     60.0000      60.0000   -0.4481
+Avg_Quantity        5026.0     1.0722     0.1365  1.00    1.0000    1.000     1.018     1.0427      1.0830      1.2276      1.4698       4.5522   11.1696
+
+=== model_input_skew (7x3)
+                        skew_input     min      max
+Recency_log                 0.0332  0.0000   7.4725
+Frequency_log              -0.5968  0.6931   7.1033
+Monetary_log               -0.8072  1.7901  11.5987
+Unique_Products_log        -0.6752  0.0000   8.3289
+Category_Diversity_log     -0.9055  0.0000   6.5058
+Active_Months              -0.4481  1.0000  60.0000
+Avg_Quantity_w              2.5232  1.0000   1.4500
+
+Cap Avg_Quantity p99 = 1.470 | user bị cắt = 51 | max gốc = 4.55
+User Frequency<=2: 32 | <=20: 581 | Recency<=30: 2786
+
+=== spearman_corr (7x7)
+                    Recency  Frequency  Monetary  Unique_Products  Category_Diversity  Active_Months  Avg_Quantity
+Recency              1.0000    -0.4346   -0.4232          -0.4274             -0.4350        -0.4299       -0.1673
+Frequency           -0.4346     1.0000    0.9350           0.9505              0.9364         0.9335        0.3389
+Monetary            -0.4232     0.9350    1.0000           0.9432              0.9349         0.8807        0.4045
+Unique_Products     -0.4274     0.9505    0.9432           1.0000              0.9783         0.8798        0.3658
+Category_Diversity  -0.4350     0.9364    0.9349           0.9783              1.0000         0.8682        0.3500
+Active_Months       -0.4299     0.9335    0.8807           0.8798              0.8682         1.0000        0.3323
+Avg_Quantity        -0.1673     0.3389    0.4045           0.3658              0.3500         0.3323        1.0000
+
+=== pearson_corr_model_input (7x7)
+                        Recency_log  Frequency_log  Monetary_log  Unique_Products_log  Category_Diversity_log  Active_Months  Avg_Quantity_w
+Recency_log                  1.0000        -0.4769       -0.4628              -0.4658                 -0.4732        -0.4560         -0.0820
+Frequency_log               -0.4769         1.0000        0.9409               0.9531                  0.9375         0.9299          0.1710
+Monetary_log                -0.4628         0.9409        1.0000               0.9443                  0.9355         0.8734          0.2307
+Unique_Products_log         -0.4658         0.9531        0.9443               1.0000                  0.9729         0.8754          0.1881
+Category_Diversity_log      -0.4732         0.9375        0.9355               0.9729                  1.0000         0.8631          0.1638
+Active_Months               -0.4560         0.9299        0.8734               0.8754                  0.8631         1.0000          0.1650
+Avg_Quantity_w              -0.0820         0.1710        0.2307               0.1881                  0.1638         0.1650          1.0000
+
+=== pca_variance_A_RFM (3x3)
+   PC     evr     cum
+0   1  0.7615  0.7615
+1   2  0.2188  0.9803
+2   3  0.0197  1.0000
+
+=== pca_loadings_A_RFM (3x2)
+                  PC1     PC2
+Recency_log   -0.4594  0.8881
+Frequency_log  0.6295  0.3144
+Monetary_log   0.6266  0.3353
+
+=== pca_variance_B_RFM_Behavior (7x3)
+   PC     evr     cum
+0   1  0.7158  0.7158
+1   2  0.1375  0.8533
+2   3  0.1032  0.9565
+3   4  0.0247  0.9812
+4   5  0.0097  0.9909
+5   6  0.0057  0.9966
+6   7  0.0034  1.0000
+
+=== pca_loadings_B_RFM_Behavior (7x2)
+                           PC1     PC2
+Recency_log            -0.2526  0.1298
+Frequency_log           0.4365 -0.0502
+Monetary_log            0.4313  0.0204
+Unique_Products_log     0.4351 -0.0294
+Category_Diversity_log  0.4318 -0.0548
+Active_Months           0.4161 -0.0482
+Avg_Quantity_w          0.1038  0.9869
+[2. DAC TRUNG / SKEW / PCA: 0s]
+
+
+######## 3. MO HINH CUOI / PROFILE / A x B ########
+
+=== final_size_A_RFM (4x2)
+         n_users   share
+cluster                 
+0            604  0.1202
+1           1615  0.3213
+2           1530  0.3044
+3           1277  0.2541
+
+=== final_median_A_RFM (4x7)
+         Recency  Frequency  Monetary  Unique_Products  Category_Diversity  Active_Months  Avg_Quantity
+cluster                                                                                                
+0          151.5       12.0    541.80             20.0                14.0            9.0        1.0000
+1           30.0       52.0   2477.19             92.0                55.0           28.0        1.0303
+2           35.0      189.5   9531.43            342.5               162.0           53.0        1.0515
+3            2.0      220.0  11118.24            390.0               180.0           55.0        1.0569
+
+=== final_mean_A_RFM (4x7)
+          Recency  Frequency    Monetary  Unique_Products  Category_Diversity  Active_Months  Avg_Quantity
+cluster                                                                                                   
+0        269.4338    13.7881    627.4677          24.5232             16.5364         9.5993        1.0520
+1         42.9678    55.3046   2665.1382         101.9672             59.4755        28.0607        1.0591
+2         40.4614   234.2190  12236.1886         435.3752            180.9542        50.8203        1.0835
+3          2.7964   266.8215  14263.1296         499.8215            199.6476        51.1073        1.0849
+
+=== final_p25_A_RFM (4x7)
+         Recency  Frequency   Monetary  Unique_Products  Category_Diversity  Active_Months  Avg_Quantity
+cluster                                                                                                 
+0           60.0        7.0   271.9075             11.0                 8.0            5.0        1.0000
+1           13.0       34.0  1575.0900             61.0                39.0           21.0        1.0114
+2           16.0      134.0  6649.8875            242.0               124.0           46.0        1.0276
+3            1.0      141.0  6554.0500            240.0               123.0           46.0        1.0317
+
+=== final_p75_A_RFM (4x7)
+         Recency  Frequency   Monetary  Unique_Products  Category_Diversity  Active_Months  Avg_Quantity
+cluster                                                                                                 
+0          343.5       19.0    814.355            33.00                23.0           13.0        1.0537
+1           52.0       73.0   3493.060           134.00                78.0           35.0        1.0667
+2           45.0      287.0  14643.050           525.75               220.0           58.0        1.0939
+3            4.0      344.0  18094.870           639.00               257.0           59.0        1.0953
+
+=== final_size_B_RFM_Behavior (4x2)
+         n_users   share
+cluster                 
+0            835  0.1661
+1           1781  0.3544
+2            298  0.0593
+3           2112  0.4202
+
+=== final_median_B_RFM_Behavior (4x7)
+         Recency  Frequency   Monetary  Unique_Products  Category_Diversity  Active_Months  Avg_Quantity
+cluster                                                                                                 
+0           79.0       15.0    674.620             25.0                17.0           10.0        1.0000
+1           31.0       70.0   3276.960            121.0                71.0           32.0        1.0301
+2           18.5      128.0   6913.005            239.0               112.5           45.0        1.2853
+3            9.5      240.0  11917.010            426.0               194.0           56.0        1.0541
+
+=== final_mean_B_RFM_Behavior (4x7)
+          Recency  Frequency    Monetary  Unique_Products  Category_Diversity  Active_Months  Avg_Quantity
+cluster                                                                                                   
+0        196.1880    16.4395    767.0794          27.4371             18.5521        11.3569        1.0432
+1         46.4677    74.4784   3692.2636         132.8725             74.8759        32.6816        1.0418
+2         44.9463   165.9631  10529.7443         319.5604            128.8691        42.9597        1.3924
+3         17.8210   284.5175  14803.1616         534.6117            213.3537        53.8087        1.0642
+
+=== final_p25_B_RFM_Behavior (4x7)
+         Recency  Frequency   Monetary  Unique_Products  Category_Diversity  Active_Months  Avg_Quantity
+cluster                                                                                                 
+0           28.0        9.0   352.3000            14.00                10.0            6.0        1.0000
+1           12.0       47.0  2172.3000            82.00                50.0           25.0        1.0132
+2            5.0       73.0  4074.0425           132.75                75.0           33.0        1.2270
+3            2.0      169.0  8133.1225           305.00               148.0           50.0        1.0306
+
+=== final_p75_B_RFM_Behavior (4x7)
+         Recency  Frequency    Monetary  Unique_Products  Category_Diversity  Active_Months  Avg_Quantity
+cluster                                                                                                  
+0          237.5       23.0   1024.9450            39.50                26.0           16.0        1.0541
+1           52.0       97.0   4785.8300           171.00                96.0           40.0        1.0606
+2           43.0      213.0  13079.6525           407.75               163.0           55.0        1.3687
+3           33.0      351.0  18105.9050           645.00               259.0           59.0        1.0866
+
+=== crosstab_A_B_counts (4x4)
+cluster    0     1    2     3
+cluster                      
+0        586    11    7     0
+1        248  1285   79     3
+2          0   320  124  1086
+3          1   165   88  1023
+ARI(A,B) tại K=4 = 0.396
+
+=== label_map_A_RFM (4x2)
+   Unnamed: 0  new_label
+0           2          0
+1           3          1
+2           1          2
+3           0          3
+
+=== label_map_B_RFM_Behavior (4x2)
+   Unnamed: 0  new_label
+0           0          0
+1           3          1
+2           2          2
+3           1          3
+
+=== cluster_names_trong_notebook (4x2)
+   cluster                cluster_name
+0        0  Ít mua, lâu không quay lại
+1        1          Mua mức trung bình
+2        2  Mua hàng tiêu dùng theo lô
+3        3    Mua nhiều, hoạt động đều
+[3. MO HINH CUOI / PROFILE / A x B: 0s]
+
+
+######## 4. CHAN DOAN SURVEY_RESPONSEID KHONG HOP LE ########
+
+=== id_valid_vs_invalid (2x8)
+      rows  n_ids  null_ids  avg_qty  avg_price    min_date    max_date            group
+0  1811238   5027         0   1.0884    22.3565  2018-01-01  2024-08-15        ID hợp lệ
+0    39479  11044       144   1.0974    36.5402  2018-01-01  2023-07-03  ID không hợp lệ
+
+=== id_invalid_top40 (40x2)
+                   Survey_ResponseID  count
+0                                RUG    541
+1                            CURTAIN    516
+2                            BLANKET    362
+3   PORTABLE_ELECTRONIC_DEVICE_COVER    359
+4                      AMAZON_TABLET    316
+5       Strong Seal on All Box Types    298
+6                         TOY_FIGURE    295
+7                     ADHESIVE_TAPES    282
+8                               HOME    251
+9                CELLULAR_PHONE_CASE    245
+10                           PLANNER    237
+11                       HANGING_ROD    229
+12                             LABEL    213
+13                            Black"    205
+14                   ART_MEDIA_PAPER    203
+15                        BLANK_BOOK    201
+16                          WALL_ART    199
+17                     BED_LINEN_SET    183
+18                           MONITOR    179
+19                    OUTDOOR_LIVING    153
+20                 HOME_BED_AND_BATH    148
+21                              None    144
+22                   OFFICE_PRODUCTS    138
+23         COMPUTER_DRIVE_OR_STORAGE    134
+24                             TOWEL    134
+25                           PLANTER    133
+26                        B00LS9UD2M    126
+27                        PILLOWCASE    124
+28                    TOYS_AND_GAMES    123
+29                             SHELF    122
+30                       DRYING_RACK    116
+31                   HARDWARE_TUBING    115
+32                    DISHWARE_PLATE    112
+33                  ELECTRONIC_CABLE    110
+34                  SCREEN_PROTECTOR    109
+35                    MATTRESS_COVER    109
+36              HEALTH_PERSONAL_CARE    108
+37                             36"""    106
+38                     STICKER_DECAL    104
+39       latest model (2021 release)    104
+
+ID rác khác biệt: 11045 | trùng đúng một giá trị Category: 1626 (14.7%)
+
+=== id_invalid_sample_rows (10x8)
+   Order_Date  Purchase_Price_Per_Unit  Quantity Shipping_Address_State                                                                                                                                                                                         Title           ASIN_ISBN_Product_Code                                                       Category                                 Survey_ResponseID
+0  2019-03-15                   124.99       1.0                     NJ                                                                                                                                                             "Fire HD 8 Tablet (8"" HD Display                            32 GB   without Special Offers) - Black (Previous Generation - 8th)"                                        B077H6L7T9
+1  2019-02-09                   210.55       1.0                     PA                                                                                              "ASUS Chromebook C202 Laptop- 11.6"" Ruggedized and Spill Resistant Design with 180 Degree Hinge              Intel Celeron N3060                                                        4GB RAM                                 16GB eMMC Storage
+2  2019-12-04                     4.26       1.0                     PA                                                                                                                       "iCraft Zots Clear Adhesive Dots, Medium, 3/8"" Diameter x 1/64"" Thick                       300 Count"                                                     B000XAOKPS                                     STICKER_DECAL
+3  2019-12-04                    11.49       1.0                     PA                                                                                                 "140 Mini Envelopes With White Blank Note Cards, Mini Envelopes 4""x 2.7"" For Business Cards   Gift Cards (Assorted Colors)…"                                                     B07JQ3G816                                          ENVELOPE
+4  2020-03-20                   145.99       1.0                     PA                                                                                                                                                        "GreenForest L Shaped Desk 65"" x 43""        Large L Desk with Storage                               Corner Computer Desk for Writing   Home Office Study Gaming Modern Desk with Hutch
+5  2020-08-31                    20.62       1.0                     PA                             "Glad for Pets Black Charcoal Puppy Pads 23"" x 23"" | Puppy Potty Training Pads That ABSORB & NEUTRALIZE Urine Instantly | New & Improved Quality Puppy Pee Pads                       100 count"                                                     B01LWS9514         DISPOSABLE_INCONTINENCE_SURFACE_PROTECTOR
+6  2020-09-06                     6.12       1.0                     PA                                                                                                                                              Knitter's Pride-Basix Fixed Circular Needles 24"                     Size 13/9mm"                                                     B006H7QUJK                                   KNITTING_NEEDLE
+7  2021-03-26                   107.99       1.0                     PA                                                                                                                                              "Fire HD 10 Tablet (10.1"" 1080p full HD display    64 GB) – Plum (2019 Release)"                                                     B07KD7CW5T                                     AMAZON_TABLET
+8  2021-04-28                     5.99       1.0                     PA                                                                                                                             Bloem 20-56408 Fiskars Ariana Planter with Self-Watering Grid, 8"                     Thyme Green"                                                     B003QKKVKK                                           PLANTER
+9  2021-04-30                    11.99       1.0                     PA  "mDesign Plastic Small Trash Can, 1.5 Gallon/5.7-Liter Wastebasket, Narrow Garbage Bin with Handles for Bathroom, Laundry, Home Office - Holds Waste, Recycling, 10"" High - Aura Collection                       Navy Blue"                                                     B01CXF7NWM                                         TRASH_CAN
+Phân vị Avg_Quantity theo ID rác:
+ count    11045.00
+mean         1.08
+std          0.45
+min          1.00
+50%          1.00
+90%          1.06
+99%          3.00
+max         25.00
+Name: avg_qty, dtype: float64
+ID rác có avg_qty >= 4: 53 | trong đó rows >= 5: 1
+[4. CHAN DOAN SURVEY_RESPONSEID KHONG HOP LE: 7s]
+
+
+######## 5. BAT THUONG / QUAN SAT TRONG DU LIEU SACH ########
+
+=== top10_spend_lines (10x6)
+   Survey_ResponseID  Order_Date  Purchase_Price_Per_Unit  Quantity    Spend                   Category
+0  R_3e8qukcDiaT0D0g  2020-02-16                  6398.95       1.0  6398.95  COMPUTER_DRIVE_OR_STORAGE
+1  R_3lMSxgNkhRq4147  2022-06-26                   759.99       8.0  6079.92               AUTO_BATTERY
+2  R_1NgAUlbpH2mgLYQ  2022-08-04                  5949.00       1.0  5949.00            VIDEO_PROJECTOR
+3  R_3s6ANl73k2a38Oz  2021-04-27                  5499.99       1.0  5499.99                       None
+4  R_3PUi8o2if0JqKfl  2022-06-16                  4999.00       1.0  4999.00                     BEAUTY
+5  R_spBuGIpg61jMNzP  2022-11-28                   500.00       9.0  4500.00       ELECTRONIC_GIFT_CARD
+6  R_spBuGIpg61jMNzP  2022-11-23                   100.00      45.0  4500.00       ELECTRONIC_GIFT_CARD
+7  R_1NDq0rxoUSu6oyz  2022-05-16                  4299.00       1.0  4299.00                       None
+8  R_4ZKWBs8TstBB0Pv  2022-09-14                   711.35       6.0  4268.10             VACUUM_CLEANER
+9  R_spBuGIpg61jMNzP  2022-11-29                   200.00      20.0  4000.00       ELECTRONIC_GIFT_CARD
+
+=== anomaly_counts (1x5)
+   qty_ge_10  qty_ge_50  price_ge_1000  spend_ge_5000     rows
+0       1043         49            387              4  1772132
+Top 1% user chiếm 7.2 % số dòng | top 10%: 37.0 %
+
+=== user_span_days (10x1)
+       span_days
+count  5026.0000
+mean   1594.7501
+std     352.3040
+min       0.0000
+5%      776.5000
+25%    1555.2500
+50%    1759.0000
+75%    1799.0000
+95%    1821.0000
+max    1825.0000
+
+=== first_purchase_year (5x1)
+       users_first_purchase
+first                      
+2018                   4280
+2019                    385
+2020                    216
+2021                    110
+2022                     35
+
+=== last_purchase_year (5x1)
+      users_last_purchase
+last                     
+2018                    8
+2019                   15
+2020                   34
+2021                  101
+2022                 4868
+[5. BAT THUONG / QUAN SAT TRONG DU LIEU SACH: 1s]
+
+
+######## 6. MOI TRUONG THUC NGHIEM ########
+
+=== environment (10x1)
+                                                               value
+spark                                                          4.2.0
+python                                                        3.14.7
+os                               macOS-26.5.1-arm64-arm-64bit-Mach-O
+machine                                                        arm64
+cpu_count                                                         10
+ram_gb                                                          16.0
+java                          openjdk version "17.0.20.1" 2026-08-18
+spark.master                                                local[*]
+spark.driver.memory                                               8g
+spark.sql.shuffle.partitions                                      32
+[6. MOI TRUONG THUC NGHIEM: 0s]

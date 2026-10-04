@@ -1,0 +1,11 @@
+,value
+spark,4.2.0
+python,3.14.7
+os,macOS-26.5.1-arm64-arm-64bit-Mach-O
+machine,arm64
+cpu_count,10
+ram_gb,16.0
+java,"openjdk version ""17.0.20.1"" 2026-08-18"
+spark.master,local[*]
+spark.driver.memory,8g
+spark.sql.shuffle.partitions,32

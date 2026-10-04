@@ -1,0 +1,4 @@
+cluster,n_users,share,Recency,Frequency,Monetary,Unique_Products,Category_Diversity,Active_Months,Avg_Quantity
+0,2235,0.445,10.0,240.0,12054.55,426.0,194.0,56.0,1.06
+1,897,0.178,75.0,16.0,711.55,27.0,18.0,11.0,1.0
+2,1894,0.377,31.0,72.0,3445.41,126.0,74.0,33.0,1.03

@@ -1,0 +1,5 @@
+cluster,n_users,share,Recency,Frequency,Monetary,Unique_Products,Category_Diversity,Active_Months,Avg_Quantity,Recency_index,Frequency_index,Monetary_index,Unique_Products_index,Category_Diversity_index,Active_Months_index,Avg_Quantity_index
+0,604,0.12,151.5,12.0,541.8,20.0,14.0,9.0,1.0,4.55,0.09,0.08,0.08,0.13,0.25,0.98
+1,1615,0.321,30.0,52.0,2477.19,92.0,55.0,28.0,1.03,0.73,0.35,0.32,0.35,0.47,0.73,0.99
+2,1530,0.304,35.0,189.5,9531.43,342.5,162.0,53.0,1.05,0.68,1.48,1.48,1.47,1.43,1.32,1.01
+3,1277,0.254,2.0,220.0,11118.24,390.0,180.0,55.0,1.06,0.05,1.68,1.72,1.69,1.57,1.32,1.01

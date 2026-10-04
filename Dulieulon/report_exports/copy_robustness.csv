@@ -1,0 +1,9 @@
+model,variant,n_common,ARI_vs_final
+A_RFM,baseline_sklearn,5026,0.991
+B_RFM_Behavior,baseline_sklearn,5026,1.0
+A_RFM,bo_duplicate,5026,0.992
+B_RFM_Behavior,bo_duplicate,5026,0.971
+A_RFM,moc_2022-10-31,5015,0.311
+B_RFM_Behavior,moc_2022-10-31,5015,0.797
+A_RFM,bo_user_<=2_ngay,4994,0.881
+B_RFM_Behavior,bo_user_<=2_ngay,4994,0.895

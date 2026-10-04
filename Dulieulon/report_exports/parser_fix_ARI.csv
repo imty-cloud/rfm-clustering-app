@@ -1,0 +1,3 @@
+model,n_common,ARI_vs_final
+A_RFM,5026,0.976
+B_RFM_Behavior,5026,0.973
